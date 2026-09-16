@@ -1,7 +1,35 @@
 # Team / enterprise overrides for _bmad/config.toml.
 # Committed to the repo — applies to every developer on the project.
 # Tables deep-merge over base config; keyed entries merge by key.
-# Example: override an agent descriptor, or add a new agent.
-#
-# [agents.bmad-agent-pm]
-# description = "Prefers short, bulleted PRDs over narrative drafts."
+
+# Example practical overrides for this project. Edit values as needed.
+
+[core]
+project_name = "BMAD Sample Project"
+document_output_language = "English"
+
+[modules.bmm]
+# Redirect planning artifacts into repo docs for team visibility
+planning_artifacts = "{project-root}/docs/planning"
+
+# Override an agent descriptor example
+[agents.bmad-agent-pm]
+module = "bmm"
+team = "product"
+name = "John-PM"
+title = "Product Manager"
+icon = "📋"
+description = "Project-specific PM: concise PRDs, enforces acceptance criteria."
+
+# Add a small custom agent used for triage in this repo
+[[agents.extra_agents]]
+id = "repo-triager"
+module = "bmm"
+name = "RepoTriager"
+title = "Triage Bot"
+description = "Lightweight triage assistant used by CI to label deferred-work entries."
+
+# Add a skill-level override placeholder (per-skill files live under _bmad/custom/<skill>.toml)
+# Example: create `_bmad/custom/bmad-loop.toml` to override the bmad-loop skill settings.
+
+# End of sample overrides.
